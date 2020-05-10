@@ -8,6 +8,15 @@ final class Date
 
     public function __construct($day = 1, $month = 1, $year = 2008)
     {
+        if (!$day) {
+            $day = 1;
+        }
+        if (!$month) {
+            $month = 1;
+        }
+        if (!$year) {
+            $year = 2008;
+        }
         $this->day = $day;
         $this->month = $month;
         $this->year = $year;
