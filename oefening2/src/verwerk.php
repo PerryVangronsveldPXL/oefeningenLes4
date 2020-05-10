@@ -4,7 +4,7 @@ use Util\Date;
 $day = $_POST['day'];
 $month = $_POST['month'];
 $year = $_POST['year'];
-$date = new Date($day, $month, $year);
+$date = Date::make($day, $month, $year);
 ?>
 <!DOCTYPE html>
 <html lang="en">

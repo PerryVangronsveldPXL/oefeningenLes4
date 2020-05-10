@@ -6,7 +6,7 @@ final class Date
     private static $MONTHS = array("jan", "feb", "maa", "apr", "mei", "jun", "jul", "aug", "sep", "okt",
         "nov", "dec");
 
-    public function __construct($day = 1, $month = 1, $year = 2008)
+    private function __construct($day = 1, $month = 1, $year = 2008)
     {
         if (!$day) {
             $day = 1;
@@ -37,9 +37,9 @@ final class Date
         return $this->day;
     }
 
-    public function setDay(int $day)
+    public function changeDay($day)
     {
-        $this->day = $day;
+        return new self($day, $this->month, $this->year);
     }
 
     public function getMonth(): int
@@ -47,9 +47,9 @@ final class Date
         return $this->month;
     }
 
-    public function setMonth(int $month)
+    public function changeMonth($month)
     {
-        $this->month = $month;
+        return new self($this->day, $month, $this->year);
     }
 
     public function getYear(): int
@@ -57,8 +57,13 @@ final class Date
         return $this->year;
     }
 
-    public function setYear(int $year)
+    public function changeYear($year)
     {
-        $this->year = $year;
+        return new self($this->day, $this->month, $year);
+    }
+
+    static function make($day = 1, $month = 1, $year = 2008)
+    {
+        return new self($day, $month, $year);
     }
 }
