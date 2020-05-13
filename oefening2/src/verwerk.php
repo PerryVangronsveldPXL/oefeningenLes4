@@ -1,10 +1,18 @@
 <?php
 require_once 'Util/Date.php';
+
 use Util\Date;
+
 $day = $_POST['day'];
 $month = $_POST['month'];
 $year = $_POST['year'];
-$date = Date::make($day, $month, $year);
+$errorOutput = "";
+try {
+    $date = Date::make($day, $month, $year);
+} catch (\Util\DateException $exception) {
+    $date = null;
+    $errorOutput = $exception->getMessage();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +22,10 @@ $date = Date::make($day, $month, $year);
 </head>
 <body>
 <h1><?php
-    $date->printMonth();
+    if ($date) {
+        $date->printMonth();
+    }
     ?></h1>
+<h2><?php print $errorOutput ?></h2>
 </body>
 </html>

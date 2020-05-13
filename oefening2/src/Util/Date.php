@@ -1,5 +1,5 @@
 <?php namespace Util;
-
+require_once 'DateException.php';
 final class Date
 {
     private $day, $month, $year;
@@ -64,6 +64,9 @@ final class Date
 
     static function make($day = 1, $month = 1, $year = 2008)
     {
-        return new self($day, $month, $year);
+        if ($day > 31 || $day < 0 || $month > 12 || $month < 0) {
+            throw new DateException("Invalid date");
+        }
+            return new self($day, $month, $year);
     }
 }
