@@ -39,10 +39,12 @@ class TextNode
 
     public function printTextNodeAt(int $i)
     {
-
+        if ($i < 0) {
+            throw new \OutOfBoundsException("Index value is too low.");
+        }
         $count = 0;
         $currentNode = $this->text;
-        while ($count < $i){
+        while ($count < $i) {
             $currentNode = $this->nextNode->text;
             $count++;
         }
